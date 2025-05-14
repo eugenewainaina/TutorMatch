@@ -1,0 +1,112 @@
+/* Structured Message Styles */
+.structured-message {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.message-intro {
+  margin-bottom: 16px;
+}
+
+.message-outro {
+  margin-top: 16px;
+}
+
+.tutor-profiles {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 12px 0;
+}
+
+/* Tutor Card Styles */
+.tutor-card {
+  border-radius: 8px;
+  background-color: #f8f9fa;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.tutor-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background-color: #e9ecef;
+  cursor: pointer;
+}
+
+.tutor-card-header h3 {
+  margin: 0;
+  font-size: 16px;
+  color: #212529;
+}
+
+.expand-icon {
+  font-size: 12px;
+  transition: transform 0.3s ease;
+}
+
+.expand-icon.expanded {
+  transform: rotate(180deg);
+}
+
+.tutor-card-content {
+  padding: 16px;
+}
+
+.tutor-description {
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+
+.tutor-skills {
+  margin-bottom: 16px;
+}
+
+.tutor-skills h4 {
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.skill-item {
+  background-color: #e9ecef;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 8px;
+}
+
+.skill-item h5 {
+  margin: 0 0 6px 0;
+  font-size: 14px;
+  color: #495057;
+}
+
+.skill-item p {
+  margin: 4px 0;
+  font-size: 13px;
+}
+
+.view-profile-btn {
+  display: flex;
+  width: 100%;
+  padding: 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.view-profile-btn:hover {
+  background-color: #45a049;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}

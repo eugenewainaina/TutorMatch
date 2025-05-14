@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getMessaging, getToken } from "firebase/messaging";
-
+import { SERVER_URL } from "../config";
 
 
 // Firebase configuration
@@ -17,16 +17,45 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-// Initialize Firebase Cloud Messaging and get a reference to the service
+// Get a reference to the Firebase Service
 export const messaging = getMessaging(app);
 
+export let notification_token_sent = false;
+
+
+// Request permission to send notifications
 export const requestFirebaseNotificationPermission = async () => {
     await Notification.requestPermission()
         .then((permission) => {
+            // If the user accepts, generate the token
             if (permission === "granted") {
                 console.log("Notification permission granted.");
-                // Generate a token
-                generateToken();
+
+                generateToken()
+                    .then((currentToken) => {
+                        if (currentToken) {
+                            console.log("Current token:", currentToken);
+
+                            // Send the token to the backend
+                            sendTokenToBackend(currentToken)
+                                .then((response) => {
+                                    if (response.ok) {
+                                        notification_token_sent = true;
+                                        console.log("Token sent successfully to backend:", notification_token_sent);
+                                    } else {
+                                        notification_token_sent = false;
+                                        console.log("Token not sent: ", response);
+                                        console.error("generateToken:\nError sending token to backend:", response);
+                                    }
+                                });
+                        } else {
+                            console.log("No registration token available. Request permission to generate one.");
+                        }
+                    })
+                    .catch((err) => {
+                        console.error("An error occurred while retrieving token. ", err);
+                    });
+
             } else if (permission === "denied") {
                 console.log("Notification permission denied.");
             } else {
@@ -40,72 +69,37 @@ export const requestFirebaseNotificationPermission = async () => {
         }
         );
 
-
-
 };
 
 
-// Mock backend endpoint
-const mockApiEndpoint = async (token) => {
-    // Simulate an API call delay
-    await new Promise(resolve => setTimeout(resolve, 500));
-    console.log("Mock API endpoint received token:", token);
-    return { success: true, message: "Token received successfully" };
+
+// Function to generate a token and send it to the backend
+const generateToken = async () => {
+    return await getToken(messaging, {
+        // TODO: save in a safe place
+        vapidKey: "BOurT8b-a1a1TCAD1HnKDpNm38CZKUL90IprywsQKrCkpzJvNnfZd05rw1SUA4FcjYE4J1p4kbx-gqdzklMZ0Ic"
+    });
+
 };
 
-// Placeholder for sending the token to your backend
+// Function to send the token to the backend
 const sendTokenToBackend = async (token) => {
     try {
-        const response = await mockApiEndpoint(token);
-        if (response.success) {
-            console.log("Token sent to backend successfully");
-        } else {
-            console.error("Failed to send token to backend:", response.message);
-        }
-    } catch (error) {
-        console.error("Error sending token to backend:", error);
-    }
-};
-
-export const sendMessageToToken = async (token, message) => {
-    const messagePayload = {
-        "message": {
-            "token": token,
-            "notification": {
-                "title": "New Message",
-                "body": message
-            }
-        }
-    };
-
-    try {
-        const response = await fetch("https://fcm.googleapis.com/v1/projects/myproject-b5ae1/messages:send", {
+        const response = await fetch(`${SERVER_URL}/store_notification_token`, {
             method: "POST",
-            headers: { "Content-Type": "application/json", Authorization: "Bearer AAAA46v3n5w:APA91bH3W-U7fG9c4U3EwzUo9qUqD2y8746QJp7c4vX4x1k2q56tU91t6_g9kXl9T_K1w54z-r5x0r0-d8e0sQ17u8p1G" },
-            body: JSON.stringify(messagePayload),
+            //mode: "cors",
+            credentials: "include",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ notification_token: token }),
         });
+
+        console.log("sendTokenToBackend:\nResponse from backend:", response);
+
         return response;
     } catch (error) {
+        console.log("sendTokenToBackend:\nSent token to backend: ", notification_token_sent);
+        console.log("sendTokenToBackend:\nError sending token to backend:", error);
+
         return error
     }
-};
-
-const generateToken = async () => {
-    await getToken(messaging, {
-        vapidKey: "BOurT8b-a1a1TCAD1HnKDpNm38CZKUL90IprywsQKrCkpzJvNnfZd05rw1SUA4FcjYE4J1p4kbx-gqdzklMZ0Ic"
-    })
-        .then((currentToken) => {
-            if (currentToken) {
-                console.log("Current token:", currentToken);
-
-                // Send the token to your backend
-                sendTokenToBackend(currentToken);
-            } else {
-                console.log("No registration token available. Request permission to generate one.");
-            }
-        })
-        .catch((err) => {
-            console.log("An error occurred while retrieving token. ", err);
-        });
-
 };

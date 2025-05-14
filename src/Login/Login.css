@@ -1,0 +1,32 @@
+
+
+
+.login-button {
+    width: 100%;
+    background-color: #1a1a1a;
+    color: #ffffff;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.login-button:hover {
+    background-color: #333333;
+}
+
+.signup-prompt {
+    margin-top: 1rem;
+    font-size: 0.875rem;
+    color: #6b7280;
+}
+
+.signup-link {
+    color: #1a1a1a;
+    text-decoration: none;
+}
+
+.signup-link:hover {
+    text-decoration: underline;
+}

@@ -8,7 +8,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   // commented out to prevent double logging
   // <React.StrictMode>
-    <App />
+  <App />
+
+  //<LoginForm/>
   // </React.StrictMode>
 );
 

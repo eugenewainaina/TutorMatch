@@ -1,0 +1,74 @@
+.profile-actions {
+    position: fixed;
+    bottom: 0px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    padding: 15px;
+    z-index: 1000;
+    background-color: #00000000; /* Transparent white background */
+    backdrop-filter: blur(5px); /* Optional: adds a nice blur effect behind buttons */
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.profile-button {
+    padding: 0.75rem 1.5rem; /* Slightly larger buttons */
+    border-radius: 0.375rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease; /* Smooth transition for hover effects */
+}
+
+.edit-button {
+    background-color: var(--secondary);
+    color: var(--secondary-foreground);
+}
+
+.edit-button:hover {
+    background-color: var(--secondary-hover);
+}
+
+.cancel-button {
+    background-color: var(--error);
+    color: var(--error-foreground);
+}
+
+.cancel-button:hover {
+    background-color: var(--error-hover);
+}
+
+.submit-button {
+    background-color: var(--primary);
+    color: var(--primary-foreground);
+}
+
+.submit-button:hover {
+    background-color: var(--primary-hover);
+}
+
+.education-section{
+    margin-bottom: 2rem;
+}
+
+.education-entry{
+    display: block;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.skill-name-container {
+  position: relative; /* Establishes a positioning context for the suggestions box */
+}
+
+.language-name-container {
+    position: relative;
+    /* Establishes a positioning context for the suggestions box */
+}
+
+.institution-name-container {
+    position: relative;
+    /* Establishes positioning context for suggestions box */
+}

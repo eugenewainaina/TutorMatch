@@ -1,0 +1,210 @@
+:root {
+    --primary-color: #3498db;
+    --secondary-color: #2ecc71;
+    --font-size-base: 16px;
+    --input-bg-readonly: #f2f7d9;
+}
+
+
+/* button:hover {
+    background-color: #333333;
+} */
+
+.global-main-container {
+
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 1rem;
+    background-color: #ffffff;
+}
+
+.global-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    color: #1a1a1a;
+}
+
+.global-form {
+    background-color: var(--background);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 24rem;
+    /* justify-self: center; */
+}
+
+.global-form-group {
+    position: relative;
+    margin-bottom: 1.25rem;
+}
+
+.global-form-group label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+    color: #1a1a1a;
+}
+
+.global-form-group input {
+    width: 95%;
+    padding: 0.5rem;
+    border: 1px solid #e5e5e5;
+    border-radius: 0.25rem;
+    color: #1a1a1a;
+}
+
+.global-form-group textarea {
+    width: 95%;
+    min-height: 5rem;
+    padding: 0.5rem;
+    border: 1px solid #e5e5e5;
+    border-radius: 0.25rem;
+    resize: vertical;
+}
+/* .global-form-group input:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.5);
+} */
+
+/* .global-input:focus {
+    border-color: var(--ring);
+    box-shadow: 0 0 0 3px var(--ring);
+} */
+
+.global-input-readonly {
+    color: var(--muted-foreground);
+    background-color: var(--input-bg-readonly);
+}
+
+
+.global-error-message {
+    color: var(--error);
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+
+
+
+/* Password field container */
+.global-password-container {
+    position: relative;
+}
+
+.global-toggle-password {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    padding-right: 0.75rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    color: #0645c3;
+}
+
+.global-toggle-password:hover {
+    color: var(--foreground);
+}
+
+
+.global-required {
+    color: #e53e3e;
+    margin-left: 2px;
+}
+
+.global-error-message {
+    color: #e53e3e;
+    font-size: 0.75rem;
+    margin-top: 0.25rem;
+    margin-bottom: 1rem;
+}
+
+.global-error-input {
+    border-color: #e53e3e !important;
+}
+
+
+.global-checkbox-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.global-checkbox-group input {
+    margin-right: 0.5rem;
+}
+
+.global-radio-group {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.global-radio-option {
+    display: flex;
+    align-items: center;
+}
+
+.global-radio-option input[type="radio"] {
+    margin-right: 0.5rem;
+}
+
+.global-radio-option label {
+    font-size: 0.875rem;
+    color: #1a1a1a;
+    margin-bottom: 0rem;
+}
+
+.global-profile-picture-container {
+    display: flex;
+    width: 100%;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.global-profile-picture {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    gap: 20px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.global-suggestions-container {
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    /* border-top: none; As it sits below the input */
+    max-height: 15rem;
+    /* Adjust as needed for up to 10 items */
+    overflow-y: auto;
+    width: 100%;
+    /* Makes it as wide as the .skill-name-container */
+    z-index: 1000;
+    /* Ensures it appears above other elements */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    /* Optional: rounded bottom corners */
+
+}
+
+.global-suggestion-item {
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 0.9em;
+    border: 1px solid #eee;
+    /* Separator for items */
+}
+
+.global-suggestion-item:hover {
+    background-color: #f0f0f0;
+}
