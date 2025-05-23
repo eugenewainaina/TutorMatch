@@ -10,22 +10,8 @@ import RecommendationChatbot from './Students/RecommendationChatbot';
 import UserProfile from './Profile';
 import TutorProfile from './Tutors/TutorProfile';
 import NotFound from './components/NotFound';
-
-
-
-
-
-// Now I would like to create a chat screen
-
-// when the page loads,
-//   when a message is sent, it should be in this JSON request body
-
-// {
-//   "message": "message value",
-//     "recepient_id": "recipient id"
-// }
-
-
+import Chats from './Chats/Chats';
+import ChatScreen from './Chats/ChatScreen';
 
 
 
@@ -67,6 +53,8 @@ function App() {
         <Route path="/recommendation-chatbot" element={<RecommendationChatbot />} />
         <Route path="/profile" element={<UserProfile />} />
         <Route path="/tutors/profile/:id" element={<TutorProfile />} />
+        <Route path="/chats" element={<Chats />} />
+        <Route path="/chats/:id" element={<ChatScreen />} />
       </Routes>
     </Router>
   );

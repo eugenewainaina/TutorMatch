@@ -1,0 +1,290 @@
+.chat-screen {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #f9f9f9;
+}
+
+.chat-header {
+  background-color: #1a1a1a;
+  color: white;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+}
+
+.chat-header h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.chat-messages {
+  flex: 1;
+  padding: 16px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.message-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-bottom: 16px;
+}
+
+.message-wrapper {
+  display: flex;
+  margin: 1px 0;
+}
+
+.message-wrapper.self {
+  justify-content: flex-end;
+}
+
+.message-wrapper.other {
+  justify-content: flex-start;
+}
+
+.message {
+  max-width: 65%;
+  padding: 8px 12px;
+  border-radius: 8px;
+  position: relative;
+  word-wrap: break-word;
+}
+
+.self-message {
+  background-color: #1a1a1a; /* Black */
+  color: white;
+  border-top-right-radius: 0;
+}
+
+.other-message {
+  background-color: #e9e9eb; /* Light gray */
+  color: #1a1a1a;
+  border-top-left-radius: 0;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.message-text {
+  margin-bottom: 4px;
+  font-size: 14px;
+}
+
+.message-time {
+  font-size: 11px;
+  text-align: right;
+  margin-top: 2px;
+  opacity: 0.8;
+}
+
+.self-message .message-time {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.other-message .message-time {
+  color: rgba(26, 26, 26, 0.8);
+}
+
+.message-status {
+  display: inline-block;
+  margin-left: 4px;
+  font-size: 11px;
+  color: #8d8d8d;
+}
+
+.date-separator {
+  display: flex;
+  justify-content: center;
+  margin: 16px 0 8px;
+}
+
+.date-pill {
+  background-color: rgba(26, 26, 26, 0.1);
+  color: #1a1a1a;
+  font-size: 12px;
+  border-radius: 16px;
+  padding: 4px 12px;
+  display: inline-block;
+  text-align: center;
+}
+
+.chat-input-form {
+  display: flex;
+  padding: 10px 16px;
+  background: white;
+  border-top: 1px solid #e5e5e5;
+}
+
+.chat-input {
+  flex: 1;
+  border: 1px solid #e5e5e5;
+  border-radius: 24px;
+  padding: 12px 16px;
+  font-size: 14px;
+  margin-right: 8px;
+  outline: none;
+}
+
+.chat-input:focus {
+  outline: none;
+  border-color: #1a1a1a;
+}
+
+.send-button {
+  background-color: #1a1a1a;
+  color: white;
+  border: none;
+  border-radius: 24px;
+  padding: 0 20px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.send-button:hover {
+  background-color: #333;
+}
+
+.send-button.disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.no-messages {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #666;
+  text-align: center;
+  padding: 20px;
+  background-color: rgba(26, 26, 26, 0.05);
+  border-radius: 12px;
+  margin: 20px 0;
+}
+
+.chat-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  color: #1a1a1a;
+}
+
+.floating-error-message {
+  position: fixed;
+  bottom: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  animation: slideUp 0.3s ease-in-out;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translate(-50%, 20px);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, 0);
+    opacity: 1;
+  }
+}
+
+.error-content {
+  display: flex;
+  align-items: center;
+  background-color: rgba(198, 40, 40, 0.9);
+  color: white;
+  padding: 10px 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  max-width: 80vw;
+}
+
+.close-error {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  margin-left: 10px;
+  cursor: pointer;
+  padding: 0 5px;
+}
+
+.message-retry {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 4px;
+}
+
+.retry-button {
+  background-color: rgba(26, 26, 26, 0.1);
+  border: none;
+  border-radius: 12px;
+  padding: 2px 8px;
+  font-size: 11px;
+  color: #c62828;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.self-message .retry-button {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.retry-button:hover {
+  background-color: rgba(198, 40, 40, 0.2);
+}
+
+/* Status indicators for messages */
+.message.sending::after {
+  content: "Sending...";
+  font-size: 11px;
+  display: block;
+  text-align: right;
+  margin-top: 2px;
+}
+
+.self-message.sending::after {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.other-message.sending::after {
+  color: rgba(26, 26, 26, 0.7);
+}
+
+.message.sent::after {
+  content: "Sent";
+  font-size: 11px;
+  display: block;
+  text-align: right;
+  margin-top: 2px;
+}
+
+.self-message.sent::after {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.other-message.sent::after {
+  color: rgba(26, 26, 26, 0.7);
+}
+
+/* Removing the ::after pseudo-element for failed messages since we're using a retry button */
+.message.failed {
+  opacity: 0.8;
+}
+
+@media (max-width: 767px) {
+  .message {
+    max-width: 80%;
+  }
+}
