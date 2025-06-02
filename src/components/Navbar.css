@@ -45,6 +45,17 @@
   color: var(--primary-color);
 }
 
+.search-icon {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-icon:hover {
+  color: var(--primary-color);
+}
+
 @media (max-width: 768px) {
   .navbar {
     height: auto;

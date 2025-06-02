@@ -31,13 +31,17 @@ export const validateDateOfBirth = (dob, userType) => {
     const dobDate = new Date(dob);
     const today = new Date();
     if (dobDate > today) return "Date of birth cannot be in the future";
+    
+    let age = today.getFullYear() - dobDate.getFullYear();
+    const m = today.getMonth() - dobDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < dobDate.getDate())) {
+        age--;
+    }
+    
     if (userType === 'tutor') {
-        let age = today.getFullYear() - dobDate.getFullYear();
-        const m = today.getMonth() - dobDate.getMonth();
-        if (m < 0 || (m === 0 && today.getDate() < dobDate.getDate())) {
-            age--;
-        }
         if (age < 16) return "Tutors must be at least 16 years old";
+    } else if (userType === 'parent') {
+        if (age < 18) return "Parents must be at least 18 years old";
     }
     return null;
 };

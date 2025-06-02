@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { SERVER_URL } from '../config';
+import { requestFirebaseNotificationPermission } from '../notifications/firebase';
 import './ChatScreen.css';
 
 // Format date for message grouping
@@ -109,6 +110,17 @@ const ChatScreen = () => {
   const [chatName, setChatName] = useState('');
   const chatContainerRef = useRef(null);
   const chatInputRef = useRef(null);
+
+  // Request notification permission when chat screen is opened
+  useEffect(() => {
+    requestFirebaseNotificationPermission()
+      .then((permission) => {
+        console.log("ChatScreen: Firebase notification permission status:", permission);
+      })
+      .catch((err) => {
+        console.error("ChatScreen: Error requesting notification permission:", err);
+      });
+  }, []);
 
   // Fetch messages
   useEffect(() => {

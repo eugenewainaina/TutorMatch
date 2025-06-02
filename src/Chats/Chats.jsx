@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { SERVER_URL } from '../config';
 import { useNavigate } from 'react-router-dom';
+import { requestFirebaseNotificationPermission } from '../notifications/firebase';
 import './Chats.css';
 
 const formatMessageTime = (timestamp) => {
@@ -117,6 +118,14 @@ const Chats = () => {
         navigate(`/chats/${chatId}`);
     };
   useEffect(() => {
+    // Request notification permission when the chats list is opened
+    requestFirebaseNotificationPermission()
+      .then((permission) => {
+        console.log("Chats: Firebase notification permission status:", permission);
+      })
+      .catch((err) => {
+        console.error("Chats: Error requesting notification permission:", err);
+      });
     
     fetchChats();
   }, []);

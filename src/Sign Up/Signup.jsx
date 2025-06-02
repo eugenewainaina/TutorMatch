@@ -86,7 +86,7 @@ const SignUp = () => {
         const passwordError = validatePassword(form.password);
         if (passwordError) newErrors.password = passwordError;
 
-        if (!userType) newErrors.userType = "Please select whether you are a Student or Tutor";
+        if (!userType) newErrors.userType = "Please select whether you are a Student, Tutor, or Parent";
 
         const dobError = validateDateOfBirth(form.dob, userType);
         if (dobError) newErrors.dob = dobError;
@@ -221,6 +221,18 @@ const SignUp = () => {
                                 required
                             />
                             <label htmlFor="tutor">Tutor</label>
+                        </div>
+                        <div className="global-radio-option">
+                            <input
+                                type="radio"
+                                id="parent"
+                                name="userType"
+                                value="parent"
+                                checked={userType === 'parent'}
+                                onChange={handleUserTypeChange}
+                                required
+                            />
+                            <label htmlFor="parent">Parent</label>
                         </div>
                     </div>
                     {formErrors.userType && <p className="global-error-message">{formErrors.userType}</p>}

@@ -1,6 +1,6 @@
-/* TutorProfile.css - LinkedIn-style profile layout */
+/* StudentProfile.css - LinkedIn-style profile layout */
 
-.tutor-profile-container {
+.student-profile-container {
     max-width: 1128px;
     margin: 0 auto;
     padding: 20px;
@@ -21,7 +21,7 @@
 .profile-cover {
     height: 200px;
     border-radius: 8px 8px 0 0;
-    background: linear-gradient(to right, var(--primary-color), #2193b0);
+    background: linear-gradient(to right, #2ecc71, #3498db); /* Different gradient for students */
     position: relative;
 }
 
@@ -103,47 +103,6 @@ section h2 {
     border-bottom: 1px solid #e0e0e0;
 }
 
-/* Skills Section */
-.skills-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 16px;
-}
-
-.skill-item {
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    padding: 16px;
-    transition: all 0.3s ease;
-}
-
-.skill-item:hover {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.skill-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 8px;
-}
-
-.skill-header h4 {
-    margin: 0;
-    font-weight: 600;
-    color: var(--primary-color);
-}
-
-.skill-details p {
-    margin: 5px 0;
-    font-size: 14px;
-}
-
-.skill-details p span {
-    font-weight: 500;
-    color: #666666;
-}
-
 /* Education Section */
 .education-container {
     display: flex;
@@ -171,58 +130,28 @@ section h2 {
     color: #666666;
 }
 
-/* Experience Section */
-.experience-container {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+.no-info-message {
+    color: #888888;
+    font-style: italic;
+    padding: 10px 0;
 }
 
-.experience-item {
-    padding-bottom: 16px;
-    border-bottom: 1px solid #e0e0e0;
+/* Preferred Learning Mode Section */
+.preferred-learning-section {
+    margin-top: 20px;
 }
 
-.experience-item:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
+.learning-mode-info {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 6px;
+    border-left: 4px solid var(--secondary-color);
 }
 
-.experience-item h4 {
-    font-weight: 600;
-    margin: 0 0 8px 0;
-}
-
-.experience-item p {
-    margin: 4px 0;
-    color: #666666;
-}
-
-/* Certifications Section */
-.certifications-container {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-}
-
-.certification-item {
-    padding-bottom: 16px;
-    border-bottom: 1px solid #e0e0e0;
-}
-
-.certification-item:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
-}
-
-.certification-item h4 {
-    font-weight: 600;
-    margin: 0 0 8px 0;
-}
-
-.certification-item p {
-    margin: 4px 0;
-    color: #666666;
+.learning-mode-info p {
+    margin: 0;
+    color: #444444;
+    font-size: 16px;
 }
 
 /* Sidebar */
@@ -245,7 +174,6 @@ section h2 {
     margin: 8px 0;
 }
 
-.request-button,
 .action-button {
     display: block;
     width: 100%;
@@ -260,7 +188,6 @@ section h2 {
     transition: background-color 0.3s;
 }
 
-.request-button:hover,
 .action-button:hover {
     background-color: #2980b9;
 }
@@ -338,6 +265,18 @@ section h2 {
     cursor: not-allowed;
 }
 
+.preferences-info {
+    margin-top: 20px;
+}
+
+.preferences-info h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
 /* Loading and Error States */
 .profile-loading,
 .profile-error {
@@ -367,9 +306,5 @@ section h2 {
 
     .profile-headline {
         margin-top: 70px;
-    }
-
-    .skills-container {
-        grid-template-columns: 1fr;
     }
 }

@@ -10,6 +10,7 @@ function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [isTutor, setIsTutor] = useState(false);
+    const [isParent, setIsParent] = useState(false);
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
@@ -33,14 +34,20 @@ function Login() {
                 body: JSON.stringify({
                     email: email.replace(/\s+/g, ''),
                     password: password.trim(),
-                    role: isTutor ? 'tutor' : 'student'
+                    role: isParent ? 'parent' : (isTutor ? 'tutor' : 'student')
                 })
             });
 
             if (response.redirected) {
                 console.log("url", response.url);
                 let nextPage = response.url.split('/').pop();
-                navigate(`/${nextPage}`, { replace: true });
+                
+                // Check if the user is a parent and redirect to the parent profile
+                if (isParent) {
+                    navigate('/parent_homepage', { replace: true });
+                } else {
+                    navigate(`/${nextPage}`, { replace: true });
+                }
 
                 requestNotificationPermission();
                 return;
@@ -93,9 +100,24 @@ function Login() {
                         type="checkbox"
                         id="tutor"
                         checked={isTutor}
-                        onChange={(e) => setIsTutor(e.target.checked)}
+                        onChange={(e) => {
+                            setIsTutor(e.target.checked);
+                            if (e.target.checked) setIsParent(false); // Can't be both tutor and parent
+                        }}
                     />
                     <label htmlFor="tutor">I am a Tutor</label>
+                </div>
+                <div className="global-checkbox-group">
+                    <input
+                        type="checkbox"
+                        id="parent"
+                        checked={isParent}
+                        onChange={(e) => {
+                            setIsParent(e.target.checked);
+                            if (e.target.checked) setIsTutor(false); // Can't be both parent and tutor
+                        }}
+                    />
+                    <label htmlFor="parent">I am a Parent</label>
                 </div>
                 {error && <div className="global-error-message">{error}</div>}
                 <button type="submit" className="login-button" disabled={loading}>

@@ -1,0 +1,54 @@
+/* Parent Profile specific styles */
+.child-info-section {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.child-info-section h3 {
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-size: 1.2rem;
+}
+
+.student-profile-link, .student-messages-link, .student-lessons-link {
+    margin-top: 5px;
+}
+
+.view-student-link, .view-messages-link, .view-lessons-link {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #4285f4;
+    color: white;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.view-student-link:hover, .view-messages-link:hover, .view-lessons-link:hover {
+    background-color: #3367d6;
+    text-decoration: none;
+}
+
+.view-messages-link {
+    background-color: #34a853; /* Different color for the messages button */
+}
+
+.view-messages-link:hover {
+    background-color: #2d8e47;
+}
+
+.view-lessons-link {
+    background-color: #fbbc05; /* Yellow color for lessons button */
+}
+
+.view-lessons-link:hover {
+    background-color: #e0a800;
+}

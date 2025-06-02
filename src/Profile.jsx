@@ -62,6 +62,11 @@ const UserProfile = () => {
                 throw new Error('Failed to fetch profile data');
             }
             const data = await response.json();
+            console.log("Profile API response:", data);
+            console.log("Skills data from API:", data.skills);
+            console.log("Work experience data from API:", data.work_experience);
+            console.log("Certifications data from API:", data.certifications);
+            
             const formattedData = {
                 fullName: data.name || "",
                 phoneNumber: data.phone || "",
@@ -73,9 +78,10 @@ const UserProfile = () => {
                 profilePicture: data.profile_picture || `/profile_icon.png`,
                 education: data.education || null,
                 bio: data.bio || null,
-                skills: data.skills || null,
-                workExperience: data.work_experience || null,
-                certifications: data.certifications || null,
+                // Only include skills, work experience, and certifications if they exist in the response (to differentiate students from tutors)
+                ...(Object.prototype.hasOwnProperty.call(data, 'skills') ? { skills: data.skills } : {}),
+                ...(Object.prototype.hasOwnProperty.call(data, 'work_experience') ? { workExperience: data.work_experience } : {}),
+                ...(Object.prototype.hasOwnProperty.call(data, 'certifications') ? { certifications: data.certifications } : {}),
                 rating: data.rating || null,
                 preferences: data.preferences || null,
             };
@@ -237,7 +243,9 @@ const UserProfile = () => {
     }, [formData.education]);
 
     useEffect(() => {
+        // Always show the skills section but the content may be empty
         if (formData.skills && typeof formData.skills === "object") {
+            // Skills exists and is an object - format and display
             const formattedSkills = Object.entries(formData.skills).map(
                 ([skillName, details]) => {
                     const mode = details["mode of teaching"] || "online";
@@ -251,6 +259,7 @@ const UserProfile = () => {
             );
             setSkillsList(formattedSkills);
         } else {
+            // Skills doesn't exist or is not an object - display empty list
             setSkillsList([]);
         }
     }, [formData.skills]);
@@ -1016,61 +1025,62 @@ const UserProfile = () => {
                     )}
                 </div>
 
-                {formData.skills && (
+                {Object.prototype.hasOwnProperty.call(formData, 'skills') && (
                     <div className="skills-section">
                         <hr />
                         <h3>Skills</h3>
-                        {skillsList.map((skill, index) => (
-                            <div key={index} className="skill-entry">
-                                <hr style={{ width: '30%' }} />
-                                <div className="skill-name-container">
-                                    <InputField
-                                        label="Skill Name"
-                                        value={skill.skillName}
-                                        onChange={(e) => handleSkillChange(index, "skillName", e.target.value)}
-                                        name={`skillName-${index}`}
-                                        readOnly={!isEditing}
-                                        className="skill-input"
-                                        onBlur={() => {
-                                            setTimeout(() => {
-                                                setSkillSuggestions(prev => ({
-                                                    ...prev,
-                                                    [index]: { ...prev[index], show: false }
-                                                }));
-                                            }, 100);
-                                        }}
-                                        onFocus={() => {
-                                            if (skill.skillName.trim().length > 0 && allAvailableSkills.length > 0) {
-                                                const inputValue = skill.skillName.toLowerCase();
-                                                const filteredSuggestions = allAvailableSkills
-                                                    .filter(s => s.toLowerCase().includes(inputValue))
-                                                    .slice(0, 10);
-                                                if (filteredSuggestions.length > 0) {
+                        {skillsList.length > 0 ? (
+                            skillsList.map((skill, index) => (
+                                <div key={index} className="skill-entry">
+                                    <hr style={{ width: '30%' }} />
+                                    <div className="skill-name-container">
+                                        <InputField
+                                            label="Skill Name"
+                                            value={skill.skillName}
+                                            onChange={(e) => handleSkillChange(index, "skillName", e.target.value)}
+                                            name={`skillName-${index}`}
+                                            readOnly={!isEditing}
+                                            className="skill-input"
+                                            onBlur={() => {
+                                                setTimeout(() => {
                                                     setSkillSuggestions(prev => ({
                                                         ...prev,
-                                                        [index]: { list: filteredSuggestions, show: true }
+                                                        [index]: { ...prev[index], show: false }
                                                     }));
+                                                }, 100);
+                                            }}
+                                            onFocus={() => {
+                                                if (skill.skillName.trim().length > 0 && allAvailableSkills.length > 0) {
+                                                    const inputValue = skill.skillName.toLowerCase();
+                                                    const filteredSuggestions = allAvailableSkills
+                                                        .filter(s => s.toLowerCase().includes(inputValue))
+                                                        .slice(0, 10);
+                                                    if (filteredSuggestions.length > 0) {
+                                                        setSkillSuggestions(prev => ({
+                                                            ...prev,
+                                                            [index]: { list: filteredSuggestions, show: true }
+                                                        }));
+                                                    }
                                                 }
-                                            }
-                                        }}
-                                    />
-                                    {isEditing && skillSuggestions[index]?.show && skillSuggestions[index]?.list.length > 0 && (
-                                        <div
-                                            className="global-suggestions-container"
-                                            ref={el => (skillsSuggestionRefs.current[index] = el)}
-                                        >
-                                            {skillSuggestions[index].list.map((suggestion, sIndex) => (
-                                                <div
-                                                    key={sIndex}
-                                                    className="global-suggestion-item"
-                                                    onMouseDown={() => handleSkillSuggestionClick(index, suggestion)}
-                                                >
-                                                    {suggestion}
-                                                </div>
-                                            ))}
-                                        </div>
-                                    )}
-                                </div>
+                                            }}
+                                        />
+                                        {isEditing && skillSuggestions[index]?.show && skillSuggestions[index]?.list.length > 0 && (
+                                            <div
+                                                className="global-suggestions-container"
+                                                ref={el => (skillsSuggestionRefs.current[index] = el)}
+                                            >
+                                                {skillSuggestions[index].list.map((suggestion, sIndex) => (
+                                                    <div
+                                                        key={sIndex}
+                                                        className="global-suggestion-item"
+                                                        onMouseDown={() => handleSkillSuggestionClick(index, suggestion)}
+                                                    >
+                                                        {suggestion}
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        )}
+                                    </div>
 
                                 <div className="global-form-group">
                                     <label htmlFor={`modeOfTeaching-${index}`}>Mode of Teaching</label>
@@ -1120,20 +1130,24 @@ const UserProfile = () => {
                                     </button>
                                 )}
                             </div>
-                        ))}
-                        {isEditing && (
-                            <button
-                                type="button"
-                                className="global-add-button"
-                                onClick={addSkill}
-                            >
-                                Add Skill
-                            </button>
-                        )}
-                    </div>
+                        ))
+                    ) : (
+                        <p>No skills added yet.</p>
+                    )}
+                    
+                    {isEditing && (
+                        <button
+                            type="button"
+                            className="global-add-button"
+                            onClick={addSkill}
+                        >
+                            Add Skill
+                        </button>
+                    )}
+                </div>
                 )}
 
-                {formData.workExperience && (
+                {Object.prototype.hasOwnProperty.call(formData, 'workExperience') && (
                     <div className="work-experience-section">
                         <hr />
                         <h3>Work Experience</h3>
@@ -1214,7 +1228,7 @@ const UserProfile = () => {
                     </div>
                 )}
 
-                {formData.certifications && (
+                {Object.prototype.hasOwnProperty.call(formData, 'certifications') && (
                     <div className="certifications-section">
                         <hr />
                         <h3>Certifications</h3>
