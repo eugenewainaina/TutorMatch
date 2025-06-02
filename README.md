@@ -42,8 +42,7 @@ TutorMatch is a comprehensive online platform connecting students with tutors. T
 
 1. Clone the repository
 ```bash
-git clone https://github.com/eugenewainaina/tutormatch-frontend.git
-cd 4th_yr_frontend
+git clone https://github.com/eugenewainaina/TutorMatch.git
 ```
 
 2. Install dependencies
