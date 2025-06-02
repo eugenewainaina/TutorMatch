@@ -4,12 +4,12 @@ importScripts('https://www.gstatic.com/firebasejs/10.13.2/firebase-messaging-com
 
 // Firebase configuration
 firebase.initializeApp({
-    apiKey: "AIzaSyDvDU4SzqwjuWbWtDCAIIZkS9f2O7GqKNo",
-    authDomain: "n8n-4th-project-v1.firebaseapp.com",
-    projectId: "n8n-4th-project-v1",
-    storageBucket: "n8n-4th-project-v1.firebasestorage.app",
-    messagingSenderId: "264871607587",
-    appId: "1:264871607587:web:1197fff4a2e49d9674e096"
+    apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+    authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+    projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+    storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+    appId: process.env.REACT_APP_FIREBASE_APP_ID
 });
 
 // Retrieve an instance of Firebase Messaging so that it can handle background
