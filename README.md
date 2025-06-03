@@ -15,7 +15,7 @@ TutorMatch is a comprehensive online platform connecting students with tutors. T
 - **Recommendation Engine**: AI-powered chatbot for personalized tutor recommendations based on learning needs
 
 ### Communication
-- **Real-time Messaging**: Built-in chat functionality between connected users
+- **Real-time Messaging**: Built-in chat functionality between connected users with AI moderation for chats with minors
 - **Notification System**: Firebase-powered push notifications for new messages and connection updates
 - **Parent Oversight**: Parents can monitor their children's messaging and lesson activities
 
