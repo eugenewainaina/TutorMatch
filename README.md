@@ -1,6 +1,9 @@
 # TutorMatch
 
-TutorMatch is a comprehensive online platform connecting students with tutors. This web application facilitates educational connections, personalized learning experiences, and efficient communication between students, tutors, and parents.
+An AI-Powered Web Platform Connecting Students with Qualified Tutors.
+TutorMatch is a web-based platform designed to connect students with qualified tutors through intelligent recommendations, secure communication, and structured lesson scheduling. Built with a strong focus on the Kenyan context, the platform integrates M-Pesa payments, Google Calendar scheduling, email reminders, real-time messaging with AI-powered moderation, and parent-student monitoring features to ensure safe and efficient learning.
+
+The tutor recommendation engine leverages a Large Language Model (LLM) which uses Retrieval Augmented Generation (RAG) to match learners with tutors based on subject, availability, language, pricing, and preferences. A Chat Moderation Model is used to enhance child-safety and ensure safe communication between Tutors and Students. The entire backend logic is orchestrated using n8n, JavaScript, Python, and PostgreSQL and containerized with Docker.
 
 ## Features
 
