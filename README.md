@@ -27,38 +27,6 @@ The tutor recommendation engine leverages a Large Language Model (LLM) which use
 - **Skill-based Pricing**: Transparent pricing structure based on teaching mode (online/physical)
 - **Educational Resources**: Share and access learning materials
 
-## Technology Stack
-
-- **Frontend**: React.js with React Router for navigation
-- **UI/UX**: Custom CSS
-- **Authentication**: JWT-based authentication and authorization system
-- **Real-time Communication**: Firebase Cloud Messaging for notifications
-- **Data Management**: REST API integration
-
-## Getting Started
-
-### Prerequisites
-- Node.js (v14 or later)
-- npm or yarn
-
-### Installation
-
-1. Clone the repository
-```bash
-git clone https://github.com/eugenewainaina/TutorMatch.git
-```
-
-2. Install dependencies
-```bash
-npm install
-```
-
-3. Start the development server
-```bash
-npm start
-```
-
-The application will be available at http://localhost:3000
 
 ## Project Structure
 
@@ -77,21 +45,16 @@ The application will be available at http://localhost:3000
 
 - `config.js` has the root API endpoint defined
 
-## API Integration
-
-The frontend communicates with a backend API to manage user data, connections, messages, and lessons.
 
 ## Features in Development
 
 The following features are still in progress or under active development:
 
 ### Parent Module
-- The parent module is still under development
-- Parents currently cannot add children to their account
+- Parent-Student Account Connection is still under development
 
 ### Payment System
-- Payment processing functionality has not been implemented yet
-- Future versions will include mpesa payment and other payment methods like Visa for tutoring sessions
+- Future versions will include other payment methods like Visa and other mobile providers.
 
 ### Service Contracts
 - Service contract feature is still pending implementation
@@ -101,6 +64,3 @@ The following features are still in progress or under active development:
 - Real-time notifications are currently experiencing some bugs
 - Performance optimizations are ongoing
 
-## Acknowledgements
-
-- This project was developed as part of a 4th year university project.
